@@ -33,8 +33,8 @@ table.table
           = link_to '削除', task, method: :delete, data: { confirm: "タスク「#{task.name}」を削除します。よろしいですか？"}, class: 'btn btn-danger'
 = link_to 'エクスポート', tasks_path(format: :csv), class: 'btn btn-primary mb-3'
 = form_tag import_tasks_path, multipart: true, class: 'mb-3' do
-  = file_field_tag :file
-  = submit_tag "インポート", class: 'btn btn-primary'
+  = file_field_tag :file, id: 'csv_file_btn'
+  = submit_tag "インポート", disabled: true, class: 'btn btn-primary', id: 'file_submit_btn'
 
 javascript:
   document.addEventListener('turbolinks:load', function() {
@@ -48,3 +48,13 @@ javascript:
       });
     });
   });
+  
+  const input_file = document.getElementById('csv_file_btn');
+  const submit_btn = document.getElementById('file_submit_btn');
+  input_file.onchange = () => {
+    if (input_file.value){
+      submit_btn.disabled = false;
+    }else{
+      submit_bnt.disabled = true;
+    }
+  };
