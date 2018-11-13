@@ -5,7 +5,7 @@ class Task < ApplicationRecord
 
   has_one_attached :image
   belongs_to :user
-  
+
   scope :recent, -> { order(created_at: :desc) }
 
   def self.ransackable_attributes(auth_object = nil)
@@ -43,7 +43,7 @@ class Task < ApplicationRecord
   def set_nameless_name
     self.name = '名前なし' if name.blank?
   end
-  
+
   def validate_name_not_including_comma
     errors.add(:name, 'カンマを含めることはできません') if name&.include?(',')
   end

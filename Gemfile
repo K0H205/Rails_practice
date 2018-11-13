@@ -87,3 +87,7 @@ gem 'kaminari'
 
 #Asynchronous processing
 gem 'sidekiq'
+
+#file_upload
+gem 'carrierwave'
+gem 'mini_magick'
